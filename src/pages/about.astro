@@ -11,13 +11,12 @@ const skills = ["HTML", "CSS", "JavaScript", "React", "Astro", "Python"];
 const happy = true;
 const finished = false;
 const goal = 1;
+const skillColor = "white";
+
 ---
 
 <Layout title="My Astro site.">
 	<main>
-    <a href="/"><span class="text-gradient">Home</span></a>
-    <a href="/about/"><span class="text-gradient">About</span></a>
-    <a href="/blog/"><span class="text-gradient">Blog</span></a>
     <h1>{pageTitle}</h1>
       <h2>... and my new Astro site!</h2>
     
@@ -34,7 +33,7 @@ const goal = 1;
       </ul>
       <p>My skills are:</p>
       <ul>
-        {skills.map((skill) => <li>{skill}</li>)}
+        {skills.map((skill) => <li class="skill">{skill}</li>)}
       </ul>
       {happy && <p>I am happy to be learning Astro!</p>}
       {finished && <p>I finished this tutorial!</p>}
@@ -42,7 +41,7 @@ const goal = 1;
 	</main>
 </Layout>
 
-<style>
+<style define:vars={{skillColor}}>
 	main {
 		margin: auto;
 		padding: 1rem;
@@ -67,6 +66,11 @@ const goal = 1;
 		line-height: 1;
 		text-align: center;
 		margin-bottom: 1em;
+    background-image: var(--accent-gradient);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-size: 400%;
+		background-position: 0%;
 	}
 	.text-gradient {
 		background-image: var(--accent-gradient);
@@ -99,4 +103,8 @@ const goal = 1;
 		gap: 2rem;
 		padding: 0;
 	}
+  .skill {
+    font-weight: bold;
+    color: var(--skillColor);
+  }
 </style>

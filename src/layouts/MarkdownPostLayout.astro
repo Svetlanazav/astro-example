@@ -1,0 +1,51 @@
+---
+const { frontmatter } = Astro.props;
+import Header from '../components/Header.astro';
+---
+
+<div class="blog">
+  <Header />
+  <h1>{frontmatter.title}</h1>
+  <p>{frontmatter.pubDate.toString().slice(0,10)}</p>
+  <p><em>{frontmatter.description}</em></p>
+  <p>Written by: {frontmatter.author}</p>
+  <img src={frontmatter.image.url} width="300" alt={frontmatter.image.alt} />
+    <slot />
+  </div>
+  
+  <style>
+    :root {
+  --accent: 136, 58, 234;
+  --accent-light: 224, 204, 250;
+  --accent-dark: 49, 10, 101;
+  --accent-gradient: linear-gradient(
+    45deg,
+    rgb(var(--accent)),
+    rgb(var(--accent-light)) 30%,
+    white 60%
+  );
+}
+html {
+  font-family: system-ui, sans-serif;
+  background: #ffffff;
+}
+code {
+  font-family: Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono,
+    Bitstream Vera Sans Mono, Courier New, monospace;
+}
+.blog {
+      margin: auto;
+      padding: auto;
+      box-sizing: content-box;
+      width: 100%;
+		text-decoration: none;
+		line-height: 1.4;
+		padding: calc(1.5rem - 1px);
+		border-radius: 8px;
+		background-color: #e1e0e4;
+		opacity: 1;
+    width: auto;
+    height: auto;
+    background-image: var(--accent-gradient);
+}
+  </style>
